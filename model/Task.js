@@ -6,6 +6,8 @@ const taskSchema = Schema({
     description: { type: String },
     status: { type: String, enum: ['pending', 'working', 'review', 'done', 'archive'] },
     assignee: { type: SchemaTypes.ObjectId, ref: "User" }
+}, {
+    timestamp: true,
 })
 
 const Task = model('Task', taskSchema)
