@@ -1,9 +1,14 @@
 const mongoose = require('mongoose')
-const { Schema, model } = mongoose
+const { Schema, model, SchemaTypes } = mongoose
 
 const userSchema = Schema({
     name: { type: String, required: true },
-    roles: { type: String, enum: ['manager', 'employee'], required: true }
+    roles: {
+        type: String,
+        default: "employee",
+        enum: ['manager', 'employee']
+    },
+    taskDocs: [{ type: SchemaTypes.ObjectId, ref: "Task" }]
 }, {
     timestamps: true,
 })

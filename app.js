@@ -41,7 +41,7 @@ app.use((err, req, res, next) => {
         res,
         err.statusCode ? err.statusCode : 500,
         null,
-        { message: err.message },
+        err.message,
         err.isOperational ? err.errorType : "Internal Server Error"
     )
 })
