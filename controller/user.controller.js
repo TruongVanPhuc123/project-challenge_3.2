@@ -42,13 +42,11 @@ userController.getUsers = async (req, res, next) => {
             limit: Joi.number().default(5),
             page: Joi.number().default(1),
             search: Joi.string().default(""),
-            // roles: Joi.string().default("ALL")
+            roles: Joi.string().default("All")
         })
         const { error, value } = schema.validate(data, { abortEarly: false })
-        const { page, limit, search } = value
-        // let { roles } = value
+        let { page, limit, search, roles } = value
 
-        let roles = req.query.roles || "All";
         const roleOptions = ["employee", "manager"]
 
         roles === "All" ? roles = [...roleOptions] : roles = req.query.roles
